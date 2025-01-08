@@ -1,3 +1,8 @@
 alexM, chloeW, claireS, moyoF -- 1/7/2025
 - Discussed finalized ideas for project
 - Collaborated on intial version of design doc
+
+alexM -- 1/8/2025 1:31
+- made files etc
+- started spotify functions (not completed yet) as proof of concept (they work.)
+- drafting related piazza post/howto guide
