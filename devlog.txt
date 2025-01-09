@@ -6,3 +6,17 @@ alexM -- 1/8/2025 1:31
 - made files etc
 - started spotify functions (not completed yet) as proof of concept (they work.)
 - drafting related piazza post/howto guide
+
+chloeW -- 1/8/2025 2:58
+- Finished and printed design doc
+- Updated project description, added install guide and launch codes
+
+alexM -- 1/8/2025 23:37
+- Clarified purpose of Spotify API, 
+- Reorganized site map
+- Edited for clarity
+
+chloeW -- 1/9/2025 00:44
+- Added information about Spotify API rate limit
+- Took out unnecessary results.html page
+- Linked login.html and register.html in site map
