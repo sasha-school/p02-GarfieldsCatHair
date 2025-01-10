@@ -20,3 +20,11 @@ chloeW -- 1/9/2025 00:44
 - Added information about Spotify API rate limit
 - Took out unnecessary results.html page
 - Linked login.html and register.html in site map
+
+chloeW, alexM, claireS -- 1/9/2025 12:00
+- worked on actual app functionality (flask app/db scripts start)
+- requirements.txt
+
+alexM -- 1/9/2025 20:55
+- finished most of setup_db functions
+- adjusted flask app functions accordingly
