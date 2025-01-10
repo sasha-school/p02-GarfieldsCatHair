@@ -27,6 +27,10 @@ def home():
         return render_template("index.html")
     return redirect(url_for("signup"))
 
+@app.route("/homepage")
+def homepage():
+    return render_template("homepage.html")
+
 @app.route("/signup")
 def signup():
     return render_template("signup.html")

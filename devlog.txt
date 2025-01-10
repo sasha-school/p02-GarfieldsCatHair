@@ -35,3 +35,7 @@ alexM -- 1/9/2025 22:20
 chloeW -- 1/9/2025 23:27
 - Created basic HTML templates for signup, login, and index
 - Made minor changes to __init__.py so that app now works!
+
+moyoF -- 1/10/2025 10:57
+- Created html for homepage with basic navbar
+- Made a flask route for homepage
