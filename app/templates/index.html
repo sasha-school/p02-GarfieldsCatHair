@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<!--
+  GarfieldsCatHair: Sasha M, Chloe W, Moyo F, Claire S
+  SoftDev
+  P02: TuneTown
+  2025-01-15
+  Time Spent:
+-->
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+    <h1>TuneTown</h1>
+    <p>Hello {{ session['username'] }}!<br><br>
+    <a href="{{ url_for('logout') }}">Logout</a></p>
+</body>
+
+</html>

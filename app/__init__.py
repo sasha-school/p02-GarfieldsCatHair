@@ -18,7 +18,20 @@ app = Flask(__name__)
 secret = os.urandom(32)
 app.secret_key = secret
 
-@app.route("/response" , methods=['POST', 'GET'])
+@app.route("/")
+def home():
+    if session.get("username") != None:
+        
+        
+        
+        return render_template("index.html")
+    return redirect(url_for("signup"))
+
+@app.route("/signup")
+def signup():
+    return render_template("signup.html")
+
+@app.route("/response", methods=['POST', 'GET'])
 def register():
     username = request.form.get("username")
     password = request.form.get("password")
@@ -33,19 +46,18 @@ def login():
         return redirect(url_for("home"))
     print(request.args)
     print(request.form)
-    #fix validation!!
-    if request.method == "POST" and db.validateUser(request.form.get("usernameL"), request.form.get("passwordL")):
-        session["username"] = request.form.get("usernameL")
-        session["password"] = request.form.get("passwordL")
+    if request.method == "POST" and db.validateUser(request.form.get("username"), request.form.get("password")):
+        session["username"] = request.form.get("username")
+        session["password"] = request.form.get("password")
         return redirect(url_for("home"))
-    return render_template("signin.html")
+    return render_template("login.html")
 
-@app.route("/logout", methods=["POST"])
+@app.route("/logout", methods=['POST', 'GET'])
 def logout():
     session.pop("username", None)
     session.pop("password", None)
     return redirect(url_for("home"))
 
-@app.route("/signup")
-def signup():
-    return render_template("signup.html")
+if __name__ == "__main__":
+    app.debug = True
+    app.run()
