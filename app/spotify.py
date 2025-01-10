@@ -1,3 +1,11 @@
+'''
+GarfieldsCatHair: Sasha M, Chloe W, Moyo F, Claire S
+SoftDev
+P02: TuneTown
+2025-01-15
+Time Spent: 2 hours
+'''
+
 import base64
 from requests import post, get
 import json
@@ -18,7 +26,7 @@ def get_auth_token_header(client_id, client_secret): #https://developer.spotify.
     token = json.loads(result.content)
     return{"Authorization": "Bearer " + token["access_token"]} #https://developer.spotify.com/documentation/web-api/concepts/access-token
 
-#search_type is a list
+#search_type is a list of ["artist", "album", "track"] in any combination
 def search(token_header, query, search_type): #https://developer.spotify.com/documentation/web-api/reference/search
     type ="" #string of search_types, comma separated
     for item in search_type:
@@ -30,11 +38,63 @@ def search(token_header, query, search_type): #https://developer.spotify.com/doc
     for t in search_type:
         json_items = json.loads(result.content)[f"{t}s"]["items"]
         if (len(json_items)==0):
-            print(f"no {search_type} found") ## modify
+            print(f"no {search_type} found")
         else: 
             output[t]= json_items[0]["id"]
-    return output #returns dictionary with keys corresponding to all search_type parameters that find results
+    return output #returns dictionary, keys are search_type, values are ids
 
-#def artist_info(token_header, id):
-#def album_info(token_header, id):
-#def track_info(token_header, id):
+#returns [artist_name, artist_image, [genres], [albums], [top_tracks]]
+def artist_info(token_header, id):
+    output = {}
+    query = f"https://api.spotify.com/v1/artists/{id}"
+    result = get(query, headers=token_header)
+    json_items = json.loads(result.content)
+    output['artist_name'] = json_items['name']
+    output['artist_image'] = json_items['images'][0]['url']
+    output['genres'] = json_items['genres']
+    query = f"https://api.spotify.com/v1/artists/{id}/albums?limit=5" #searches for 5, limit can be modified
+    result = get(query, headers=token_header)
+    json_items = json.loads(result.content)
+    albums = []
+    for album in json_items['items']:
+        albums += [album['name']]
+    output['albums'] = albums
+    query = f"https://api.spotify.com/v1/artists/{id}/top-tracks"
+    result = get(query, headers=token_header)
+    json_items = json.loads(result.content)
+    tracks = []
+    for track in json_items['tracks']:
+        tracks += [track['name']]
+    output['top_tracks'] = tracks
+    return(output) #returns dictionary
+
+#returns [track_name, album_image, artist_name, album_name, release_date, duration]
+def track_info(token_header, id):
+    output = {}
+    query = f"https://api.spotify.com/v1/tracks/{id}"
+    result = get(query, headers=token_header)
+    json_items = json.loads(result.content)
+    output['track_name'] = json_items['name']
+    output['album_image'] = json_items['album']['images'][0]['url']
+    output['artist_name'] = json_items['artists'][0]['name']
+    output['album_name'] = json_items['album']['name']
+    output['release_date'] = json_items['album']['release_date']
+    minutes, seconds = divmod(json_items['duration_ms'] // 1000, 60)
+    output['duration'] = f"{minutes}:{seconds}"
+    return(output) #returns dictionary
+
+#returns [album_name, album_image, artist_name, release_date, [tracks]]
+def album_info(token_header, id):
+    output = {}
+    query = f"https://api.spotify.com/v1/albums/{id}"
+    result = get(query, headers=token_header)
+    json_items = json.loads(result.content)
+    output['album_name'] = json_items['name']
+    output['album_image'] = json_items['images'][0]['url']
+    output['artist_name'] = json_items['artists'][0]['name']
+    output['release_date'] = json_items['release_date']
+    tracks = []
+    for track in json_items['tracks']['items']:
+        tracks += [track['name']]
+    output['tracks'] = tracks
+    return(output) #returns dictionary
