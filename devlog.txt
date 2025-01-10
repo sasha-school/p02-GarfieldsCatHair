@@ -31,3 +31,7 @@ alexM -- 1/9/2025 20:55
 
 alexM -- 1/9/2025 22:20
 - finished spotify api stuff! (search/artist_info/track_info/album_info)
+
+chloeW -- 1/9/2025 23:27
+- Created basic HTML templates for signup, login, and index
+- Made minor changes to __init__.py so that app now works!
