@@ -39,9 +39,7 @@ def signup():
 def register():
     username = request.form.get("username")
     password = request.form.get("password")
-    c, database = db.connect()
     db.addUser(username, password)
-    db.close(database)
     session["username"] = username
     session["password"] = password
     return redirect(url_for("home"))
@@ -52,9 +50,7 @@ def login():
         return redirect(url_for("home"))
     print(request.args)
     print(request.form)
-    c, database = db.connect()
     if request.method == "POST" and db.validateUser(request.form.get("username"), request.form.get("password")):
-        db.close(database)
         session["username"] = request.form.get("username")
         session["password"] = request.form.get("password")
         return redirect(url_for("home"))
