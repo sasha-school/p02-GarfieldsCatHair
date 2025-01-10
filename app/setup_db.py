@@ -8,36 +8,28 @@ Time Spent:
 
 import sqlite3
 from flask import session
-import bcrypt
 
 
 #Create SQLite Table, creates if not already made
 db = sqlite3.connect("database.db", check_same_thread=False)
 cursor = db.cursor()
 
-#Create a User Table
+#user table
 def userTable():
-    cursor.execute("CREATE TABLE users(id INTEGER PRIMARY KEY, name TEXT NOT NULL, username TEXT NOT NULL UNIQUE, password TEXT NOT NULL)")
+    cursor.execute("CREATE TABLE users(id INTEGER PRIMARY KEY, username TEXT NOT NULL UNIQUE, password TEXT NOT NULL, pfp TEXT NOT NULL, bg_image TEXT NOT NULL, about_me TEXT NOT NULL)")
     db.commit()
 
-#Create a Lesson Table
-def lessonTable():
-    cursor.execute("CREATE TABLE lessons(id INTEGER PRIMARY KEY, title TEXT NOT NULL, content TEXT, completion INTEGER, flashcards TEXT)") # flashcards should be csv file location
-    db.commit()
-
-#Create Test Table
+#posts table
 def testTable0():
-    cursor.execute("CREATE TABLE tests(id INTEGER PRIMARY KEY, questions TEXT, correctAnswers INTEGER)") # questions should be csv file location
-    db.commit()
-
-def testTable(name):
-    cursor.execute(f"CREATE TABLE '{name}'(id INTEGER PRIMARY KEY, question TEXT, userAnswer TEXT, correctAnswer TEXT)")
+    cursor.execute("CREATE TABLE posts(id INTEGER PRIMARY KEY, username TEXT, post TEXT)") 
     db.commit()
 
 # User Helpers
-
-def addUser(name, username, password):
-    cursor.execute("INSERT INTO users(name, username, password) VALUES (?, ?, ?)", (name, username, hashPassword(password)))
+def addUser(username, password):
+    default_pfp = "https://i.pinimg.com/736x/a6/be/9c/a6be9ced2fd7a0884518e3535ff0bce8.jpg"
+    default_bg_image = "https://raw.githubusercontent.com/sasha-school/p02-GarfieldsCatHair/refs/heads/main/flag.jpg"
+    default_about_me = "about me!"
+    cursor.execute("INSERT INTO users(username, password, pfp, bg_image, about_me) VALUES (?, ?, ?, ?, ?)", (username, password, default_pfp, default_bg_image, default_about_me))
     db.commit()
 
 def removeUser(id):
@@ -45,17 +37,22 @@ def removeUser(id):
     db.commit()
 
 def validateUser(username, password):
-    dbPassword = getHash(username)
+    dbPassword = getPassword(username)
     if dbPassword:
-        #fix validatePassword()!
-        return validatePassword(dbPassword, password)
+        return (dbPassword==password)
     return False
-
-def getName(username):
-    return cursor.execute(f"SELECT name FROM users WHERE username='{username}'").fetchone()[0]
 
 def getId(username):
     return cursor.execute(f"SELECT id FROM users WHERE username='{username}'").fetchone()[0]
 
-def getHash(username):
+def getPassword(username):
     return cursor.execute(f"SELECT password FROM users WHERE username='{username}'").fetchone()[0]
+
+def getPfp(username):
+    return cursor.execute(f"SELECT pfp FROM users WHERE username='{username}'").fetchone()[0]
+
+def getBg(username):
+    return cursor.execute(f"SELECT bg_image FROM users WHERE username='{username}'").fetchone()[0]
+
+def getAM(username):
+    return cursor.execute(f"SELECT about_me FROM users WHERE username='{username}'").fetchone()[0]

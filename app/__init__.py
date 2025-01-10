@@ -20,11 +20,9 @@ app.secret_key = secret
 
 @app.route("/response" , methods=['POST', 'GET'])
 def register():
-    name = request.form.get("name")
     username = request.form.get("username")
     password = request.form.get("password")
-    db.addUser(name, username, password)
-    session["name"] = name
+    db.addUser(username, password)
     session["username"] = username
     session["password"] = password
     return redirect(url_for("home"))
@@ -38,7 +36,6 @@ def login():
     #fix validation!!
     if request.method == "POST" and db.validateUser(request.form.get("usernameL"), request.form.get("passwordL")):
         session["username"] = request.form.get("usernameL")
-        session["name"] = db.getName(session["username"])
         session["password"] = request.form.get("passwordL")
         return redirect(url_for("home"))
     return render_template("signin.html")
@@ -47,7 +44,6 @@ def login():
 def logout():
     session.pop("username", None)
     session.pop("password", None)
-    session.pop("name", None)
     return redirect(url_for("home"))
 
 @app.route("/signup")
