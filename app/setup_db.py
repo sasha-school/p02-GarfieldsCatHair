@@ -9,21 +9,10 @@ Time Spent:
 import sqlite3
 from flask import session
 
-def setup(): 
-#Create SQLite Table, creates if not already made
-    db = sqlite3.connect("database.db", check_same_thread=False)
-    cursor = db.cursor()
-    db.commit()
-    db.close()
-    
-def connect():
-    db = sqlite3.connect("database.db")
-    c = db.cursor()
-    return c, db
 
-def close(db):
-    db.commit()
-    db.close()
+#Create SQLite Table, creates if not already made
+db = sqlite3.connect("database.db", check_same_thread=False)
+cursor = db.cursor()
 
 #user table
 def userTable():
@@ -37,12 +26,11 @@ def testTable0():
 
 # User Helpers
 def addUser(username, password):
-    cursor, db = connect()
     default_pfp = "https://i.pinimg.com/736x/a6/be/9c/a6be9ced2fd7a0884518e3535ff0bce8.jpg"
     default_bg_image = "https://raw.githubusercontent.com/sasha-school/p02-GarfieldsCatHair/refs/heads/main/flag.jpg"
     default_about_me = "about me!"
     cursor.execute("INSERT INTO users(username, password, pfp, bg_image, about_me) VALUES (?, ?, ?, ?, ?)", (username, password, default_pfp, default_bg_image, default_about_me))
-    close(db)
+    db.commit()
 
 def removeUser(id):
     cursor.execute(f"DELETE FROM users WHERE id='{id}'")
