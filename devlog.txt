@@ -39,3 +39,6 @@ chloeW -- 1/9/2025 23:27
 moyoF -- 1/10/2025 10:57
 - Created html for homepage with basic navbar
 - Made a flask route for homepage
+
+chloeW -- 1/10/2025 12:47
+- Moved homepage.html into index.html and database.db outside of app directory
