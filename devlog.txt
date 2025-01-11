@@ -2,6 +2,9 @@ alexM, chloeW, claireS, moyoF -- 1/7/2025
 - Discussed finalized ideas for project
 - Collaborated on intial version of design doc
 
+claireS -- 1/8/2025 1:06
+- updated design doc with component map and about me section
+
 alexM -- 1/8/2025 1:31
 - made files etc
 - started spotify functions (not completed yet) as proof of concept (they work.)
@@ -50,3 +53,7 @@ moyoF -- 1/10/2025 7:36
 moyoF -- 1/11/2025 12:59
 - Made "/" route to index even if not logged in
 - Made Basic profile tab
+
+claireS -- 1/11/2025 1:13
+- fixed login and added minor adjustments to signup
+- accounted for errors when the username does not exist
