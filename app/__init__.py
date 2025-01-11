@@ -64,7 +64,11 @@ def login():
 @app.route("/profile")
 def profile():
     if session.get("username") != None:
-        return render_template("profile.html")
+        username = session.get("username")
+        pfp = db.getPfp(username)
+        bg = db.getBg(username)
+        am = db.getAM(username)
+        return render_template("profile.html", username=username, pfp=pfp, bg=bg, am=am)
     return redirect(url_for("login"))
 
 @app.route("/logout", methods=['POST', 'GET'])
