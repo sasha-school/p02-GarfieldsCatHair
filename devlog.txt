@@ -42,3 +42,7 @@ moyoF -- 1/10/2025 10:57
 
 chloeW -- 1/10/2025 12:47
 - Moved homepage.html into index.html and database.db outside of app directory
+
+moyoF -- 1/10/2025 7:36
+- Made a better nav bar by actually using <nav> and ul
+- Added CSS for signup and homepage
