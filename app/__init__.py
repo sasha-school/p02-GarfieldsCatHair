@@ -17,6 +17,7 @@ import json
 app = Flask(__name__) 
 secret = os.urandom(32)
 app.secret_key = secret
+# db.userTable()
 
 @app.route("/")
 def home():
@@ -30,6 +31,8 @@ def homepage():
 
 @app.route("/signup")
 def signup():
+    if session.get("username") != None:
+        return redirect(url_for("home"))
     return render_template("signup.html")
 
 @app.route("/response", methods=['POST', 'GET'])
@@ -57,6 +60,12 @@ def login():
         session["password"] = request.form.get("Password")
         return redirect(url_for("home"))
     return render_template("login.html")
+
+@app.route("/profile")
+def profile():
+    if session.get("username") != None:
+        return render_template("profile.html")
+    return redirect(url_for("login"))
 
 @app.route("/logout", methods=['POST', 'GET'])
 def logout():

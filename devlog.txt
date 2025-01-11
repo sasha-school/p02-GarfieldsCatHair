@@ -46,3 +46,7 @@ chloeW -- 1/10/2025 12:47
 moyoF -- 1/10/2025 7:36
 - Made a better nav bar by actually using <nav> and ul
 - Added CSS for signup and homepage
+
+moyoF -- 1/11/2025 12:59
+- Made "/" route to index even if not logged in
+- Made Basic profile tab
