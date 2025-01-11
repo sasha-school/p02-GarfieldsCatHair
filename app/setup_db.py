@@ -16,13 +16,16 @@ cursor = db.cursor()
 
 #user table
 def userTable():
-    cursor.execute("CREATE TABLE users(id INTEGER PRIMARY KEY, username TEXT NOT NULL UNIQUE, password TEXT NOT NULL, pfp TEXT NOT NULL, bg_image TEXT NOT NULL, about_me TEXT NOT NULL)")
+    cursor.execute("CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY, username TEXT NOT NULL UNIQUE, password TEXT NOT NULL, pfp TEXT NOT NULL, bg_image TEXT NOT NULL, about_me TEXT NOT NULL)")
     db.commit()
 
 #posts table
 def testTable0():
-    cursor.execute("CREATE TABLE posts(id INTEGER PRIMARY KEY, username TEXT, post TEXT)") 
+    cursor.execute("CREATE TABLE IF NOT EXISTS posts(id INTEGER PRIMARY KEY, username TEXT, post TEXT)") 
     db.commit()
+
+userTable()
+testTable0()
 
 # User Helpers
 def addUser(username, password):
@@ -32,11 +35,17 @@ def addUser(username, password):
     cursor.execute("INSERT INTO users(username, password, pfp, bg_image, about_me) VALUES (?, ?, ?, ?, ?)", (username, password, default_pfp, default_bg_image, default_about_me))
     db.commit()
 
+def getUsers():
+    return cursor.execute("SELECT username FROM users").fetchall()
+
 def removeUser(id):
     cursor.execute(f"DELETE FROM users WHERE id='{id}'")
     db.commit()
 
 def validateUser(username, password):
+    users = [user[0] for user in getUsers()]
+    if username not in users:
+        return False
     dbPassword = getPassword(username)
     if dbPassword:
         return (dbPassword==password)
