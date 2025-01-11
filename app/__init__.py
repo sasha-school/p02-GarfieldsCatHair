@@ -21,6 +21,12 @@ app.secret_key = secret
 
 @app.route("/")
 def home():
+    if session.get("username") != None:
+        return render_template("index.html", username = session.get("username"))
+    return redirect(url_for("signup"))
+
+@app.route("/indexTest")
+def homepage():
     return render_template("index.html")
 
 @app.route("/signup")
@@ -33,6 +39,11 @@ def signup():
 def register():
     username = request.form.get("username")
     password = request.form.get("password")
+    users = [user[0] for user in db.getUsers()]
+    if username in users:
+        #flash message later?
+        print("username already taken")
+        return redirect(url_for("signup"))
     db.addUser(username, password)
     session["username"] = username
     session["password"] = password
@@ -44,9 +55,9 @@ def login():
         return redirect(url_for("home"))
     print(request.args)
     print(request.form)
-    if request.method == "POST" and db.validateUser(request.form.get("username"), request.form.get("password")):
-        session["username"] = request.form.get("username")
-        session["password"] = request.form.get("password")
+    if request.method == "POST" and db.validateUser(request.form.get("Username"), request.form.get("Password")):
+        session["username"] = request.form.get("Username")
+        session["password"] = request.form.get("Password")
         return redirect(url_for("home"))
     return render_template("login.html")
 
