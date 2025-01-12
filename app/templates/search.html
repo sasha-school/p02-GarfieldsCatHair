@@ -11,58 +11,98 @@
 <head>
     <meta charset="UTF-8">
     <title>Search</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>    
-    <form method="GET" action="/search">
+<body>
+    <nav class="bg-white border-blue-600 dark:bg-blue-400">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">GarfieldsCatHair</span>
+          <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+            <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-blue-800 md:dark:bg-blue-400 dark:border-blue-700">
+              <li>
+                <a href="/" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-800 md:p-0 dark:text-white md:dark:hover:text-purple-800 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" aria-current="page">Home</a>
+              </li>
+              <li>
+                <a href="/login" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-800 md:p-0 dark:text-white md:dark:hover:text-purple-800 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Login</a>
+              </li>
+              <li>
+                <a href="/signup" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-800 md:p-0 dark:text-white md:dark:hover:text-purple-800 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Signup</a>
+              <li>
+                <a href="/search" class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-purple-800">Search</a>
+              </li>
+              </li>
+              <li>
+                <a href="/profile" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-800 md:p-0 dark:text-white md:dark:hover:text-purple-800 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">View Profile</a>
+              </li>
+              <li>
+                <a href="/logout" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-800 md:p-0 dark:text-white md:dark:hover:text-purple-800 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>    
+    <div class="font-serif flex justify-center mb-6 mt-6">
+        <form method="GET" action="/search" class="bg-white p-6 rounded-lg shadow-md w-full max-w-sm">
 
-        <label for="query">Query:</label>
-        <input type="text" id="query" name="query" required><br><br>
+            <label for="query">Query:</label>
+            <input type="text" id="query" name="query" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"><br><br>
 
-        <fieldset>
-            <legend>Search Type:</legend>
-            <label>
-                <input type="checkbox" name="search_type" value="artist"> Artist
-            </label><br>
-            <label>
-                <input type="checkbox" name="search_type" value="album"> Album
-            </label><br>
-            <label>
-                <input type="checkbox" name="search_type" value="track"> Track
-            </label><br>
-        </fieldset><br>
+            <fieldset class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <legend>Search Type:</legend>
+                <label>
+                    <input type="checkbox" name="search_type" value="artist"> Artist
+                </label><br>
+                <label>
+                    <input type="checkbox" name="search_type" value="album"> Album
+                </label><br>
+                <label>
+                    <input type="checkbox" name="search_type" value="track"> Track
+                </label><br>
+            </fieldset><br>
 
-        <button type="submit">Submit</button>
-    </form><br>
-
-    <a href="{{ url_for('home') }}">Return home</a>
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Submit
+            </button>
+        </form><br>
+    </div>
     
-    {% if data %}
+    <div class="flex justify-center">
+        <div class="font-serif text-xl bg-blue-300 p-6 rounded-lg shadow-md w-full max-w-2xl">
+            {% if data %}
 
-        {% if data['artist'] %}
-            <h2>Artist: {{ data['artist']['artist_name'] }}</h2>
-            <img src="{{ data['artist']['artist_image'] }}" alt="Artist Image">
-            <p>Genres: {{ data['artist']['genres'] | join(', ') }}</p>
-            <p>Albums: {{ data['artist']['albums'] | join(', ') }}</p>
-            <p>Top Tracks: {{ data['artist']['top_tracks'] | join(', ') }}</p>
-        {% endif %}
+                {% if data['artist'] %}
+                    <div class="grid grid-cols-1 divide-y-[3px] divide-blue-700 bg-blue-300 rounded-lg">
+                        <h2>Artist: {{ data['artist']['artist_name'] }}</h2>
+                        <img src="{{ data['artist']['artist_image'] }}" alt="Artist Image">
+                        <p>Genres: {{ data['artist']['genres'] | join(', ') }}</p>
+                        <p>Albums: {{ data['artist']['albums'] | join(', ') }}</p>
+                        <p>Top Tracks: {{ data['artist']['top_tracks'] | join(', ') }}</p>
+                    </div>
+                {% endif %}
 
-        {% if data['track'] %}
-            <h2>Track: {{ data['track']['track_name'] }}</h2>
-            <img src="{{ data['track']['album_image'] }}" alt="Album Image">
-            <p>Artist: {{ data['track']['artist_name'] }}</p>
-            <p>Album: {{ data['track']['album_name'] }}</p>
-            <p>Release Date: {{ data['track']['release_date'] }}</p>
-            <p>Duration: {{ data['track']['duration'] }}</p>
-        {% endif %}
+                {% if data['track'] %}
+                    <div class="grid grid-cols-1 divide-y-[3px] divide-blue-700 bg-blue-300 rounded-lg">
+                        <h2>Track: {{ data['track']['track_name'] }}</h2>
+                        <img src="{{ data['track']['album_image'] }}" alt="Album Image">
+                        <p>Artist: {{ data['track']['artist_name'] }}</p>
+                        <p>Album: {{ data['track']['album_name'] }}</p>
+                        <p>Release Date: {{ data['track']['release_date'] }}</p>
+                        <p>Duration: {{ data['track']['duration'] }}</p>
+                    </div>
+                {% endif %}
 
-        {% if data['album'] %}
-            <h2>Album: {{ data['album']['album_name'] }}</h2>
-            <img src="{{ data['album']['album_image'] }}" alt="Album Image">
-            <p>Artist: {{ data['album']['artist_name'] }}</p>
-            <p>Release Date: {{ data['album']['release_date'] }}</p>
-            <p>Tracks: {{ data['album']['tracks'] | join(', ') }}</p>
-        {% endif %}
+                {% if data['album'] %}
+                    <div class="grid grid-cols-1 divide-y-[3px] divide-blue-700 bg-blue-300 rounded-lg">
+                        <h2>Album: {{ data['album']['album_name'] }}</h2>
+                        <img src="{{ data['album']['album_image'] }}" alt="Album Image">
+                        <p>Artist: {{ data['album']['artist_name'] }}</p>
+                        <p>Release Date: {{ data['album']['release_date'] }}</p>
+                        <p>Tracks: {{ data['album']['tracks'] | join(', ') }}</p>
+                    </div>
+                {% endif %}
 
-    {% endif %}
+            {% endif %}
+        </div>
+    </div>
 </body>
 </html>

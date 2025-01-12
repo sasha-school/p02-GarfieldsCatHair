@@ -68,3 +68,6 @@ chloeW -- 1/12/2025 00:38
 chloeW -- 1/12/2025 11:57
 - Added .gitignore and updated design doc
 - Summarized Spotify API key situation in keys readme
+
+moyoF -- 1/12/2025 00:00
+- Added CSS to search page
