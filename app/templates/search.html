@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+</head>
+<body>    
+    <form method="GET" action="/search">
+
+        <label for="query">Query:</label>
+        <input type="text" id="query" name="query" required><br><br>
+
+        <fieldset>
+            <legend>Search Type:</legend>
+            <label>
+                <input type="checkbox" name="search_type" value="artist"> Artist
+            </label><br>
+            <label>
+                <input type="checkbox" name="search_type" value="album"> Album
+            </label><br>
+            <label>
+                <input type="checkbox" name="search_type" value="track"> Track
+            </label><br>
+        </fieldset><br>
+
+        <button type="submit">Submit</button>
+    </form><br>
+
+    <a href="{{ url_for('home') }}">Return home</a>
+    
+    {% if data %}
+
+        {% if data['artist'] %}
+            <h2>Artist: {{ data['artist']['artist_name'] }}</h2>
+            <img src="{{ data['artist']['artist_image'] }}" alt="Artist Image">
+            <p>Genres: {{ data['artist']['genres'] | join(', ') }}</p>
+            <p>Albums: {{ data['artist']['albums'] | join(', ') }}</p>
+            <p>Top Tracks: {{ data['artist']['top_tracks'] | join(', ') }}</p>
+        {% endif %}
+
+        {% if data['track'] %}
+            <h2>Track: {{ data['track']['track_name'] }}</h2>
+            <img src="{{ data['track']['album_image'] }}" alt="Album Image">
+            <p>Artist: {{ data['track']['artist_name'] }}</p>
+            <p>Album: {{ data['track']['album_name'] }}</p>
+            <p>Release Date: {{ data['track']['release_date'] }}</p>
+            <p>Duration: {{ data['track']['duration'] }}</p>
+        {% endif %}
+
+        {% if data['album'] %}
+            <h2>Album: {{ data['album']['album_name'] }}</h2>
+            <img src="{{ data['album']['album_image'] }}" alt="Album Image">
+            <p>Artist: {{ data['album']['artist_name'] }}</p>
+            <p>Release Date: {{ data['album']['release_date'] }}</p>
+            <p>Tracks: {{ data['album']['tracks'] | join(', ') }}</p>
+        {% endif %}
+
+    {% endif %}
+</body>
+</html>
