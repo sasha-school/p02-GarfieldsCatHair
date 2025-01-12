@@ -66,43 +66,41 @@
         </form><br>
     </div>
     
-    <div class="flex justify-center">
-        <div class="font-serif text-xl bg-blue-300 p-6 rounded-lg shadow-md w-full max-w-2xl">
             {% if data %}
+                <div class="flex justify-center">
+                    <div class="font-serif text-xl bg-blue-300 p-6 rounded-lg shadow-md w-full max-w-2xl">
+                        {% if data['artist'] %}
+                            <div class="grid grid-cols-1 divide-y-[3px] divide-blue-700 bg-blue-300 rounded-lg">
+                                <h2>Artist: {{ data['artist']['artist_name'] }}</h2>
+                                <img src="{{ data['artist']['artist_image'] }}" alt="Artist Image">
+                                <p>Genres: {{ data['artist']['genres'] | join(', ') }}</p>
+                                <p>Albums: {{ data['artist']['albums'] | join(', ') }}</p>
+                                <p>Top Tracks: {{ data['artist']['top_tracks'] | join(', ') }}</p>
+                            </div>
+                        {% endif %}
 
-                {% if data['artist'] %}
-                    <div class="grid grid-cols-1 divide-y-[3px] divide-blue-700 bg-blue-300 rounded-lg">
-                        <h2>Artist: {{ data['artist']['artist_name'] }}</h2>
-                        <img src="{{ data['artist']['artist_image'] }}" alt="Artist Image">
-                        <p>Genres: {{ data['artist']['genres'] | join(', ') }}</p>
-                        <p>Albums: {{ data['artist']['albums'] | join(', ') }}</p>
-                        <p>Top Tracks: {{ data['artist']['top_tracks'] | join(', ') }}</p>
+                        {% if data['track'] %}
+                            <div class="grid grid-cols-1 divide-y-[3px] divide-blue-700 bg-blue-300 rounded-lg">
+                                <h2>Track: {{ data['track']['track_name'] }}</h2>
+                                <img src="{{ data['track']['album_image'] }}" alt="Album Image">
+                                <p>Artist: {{ data['track']['artist_name'] }}</p>
+                                <p>Album: {{ data['track']['album_name'] }}</p>
+                                <p>Release Date: {{ data['track']['release_date'] }}</p>
+                                <p>Duration: {{ data['track']['duration'] }}</p>
+                            </div>
+                        {% endif %}
+
+                        {% if data['album'] %}
+                            <div class="grid grid-cols-1 divide-y-[3px] divide-blue-700 bg-blue-300 rounded-lg">
+                                <h2>Album: {{ data['album']['album_name'] }}</h2>
+                                <img src="{{ data['album']['album_image'] }}" alt="Album Image">
+                                <p>Artist: {{ data['album']['artist_name'] }}</p>
+                                <p>Release Date: {{ data['album']['release_date'] }}</p>
+                                <p>Tracks: {{ data['album']['tracks'] | join(', ') }}</p>
+                            </div>
+                        {% endif %}
                     </div>
-                {% endif %}
-
-                {% if data['track'] %}
-                    <div class="grid grid-cols-1 divide-y-[3px] divide-blue-700 bg-blue-300 rounded-lg">
-                        <h2>Track: {{ data['track']['track_name'] }}</h2>
-                        <img src="{{ data['track']['album_image'] }}" alt="Album Image">
-                        <p>Artist: {{ data['track']['artist_name'] }}</p>
-                        <p>Album: {{ data['track']['album_name'] }}</p>
-                        <p>Release Date: {{ data['track']['release_date'] }}</p>
-                        <p>Duration: {{ data['track']['duration'] }}</p>
-                    </div>
-                {% endif %}
-
-                {% if data['album'] %}
-                    <div class="grid grid-cols-1 divide-y-[3px] divide-blue-700 bg-blue-300 rounded-lg">
-                        <h2>Album: {{ data['album']['album_name'] }}</h2>
-                        <img src="{{ data['album']['album_image'] }}" alt="Album Image">
-                        <p>Artist: {{ data['album']['artist_name'] }}</p>
-                        <p>Release Date: {{ data['album']['release_date'] }}</p>
-                        <p>Tracks: {{ data['album']['tracks'] | join(', ') }}</p>
-                    </div>
-                {% endif %}
-
+                </div>        
             {% endif %}
-        </div>
-    </div>
 </body>
 </html>
