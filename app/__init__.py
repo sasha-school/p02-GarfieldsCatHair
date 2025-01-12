@@ -73,6 +73,21 @@ def profile():
         return render_template("profile.html", username=username, pfp=pfp, bg=bg, am=am)
     return redirect(url_for("login"))
 
+@app.route("/settings", methods=['GET', 'POST'])
+def settings():
+    if session.get("username") == None:
+        return redirect(url_for("login"))
+    if request.method == "GET":
+        username = session.get("username")
+        pfp = db.getPfp(username)
+        bg = db.getBg(username)
+        am = db.getAM(username)
+        return render_template("settings.html", username=username, pfp=pfp, bg=bg, am=am)
+    db.changePfp(request.form.get("profile"), session.get("username"))
+    db.changeBg(request.form.get("background"), session.get("username"))
+    db.changeAM(request.form.get("about"), session.get("username"))
+    return redirect(url_for("profile"))
+
 @app.route("/logout", methods=['POST', 'GET'])
 def logout():
     session.pop("username", None)

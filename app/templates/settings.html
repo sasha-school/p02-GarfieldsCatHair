@@ -10,7 +10,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Proflie</title>
+    <title>Proflie Settings</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
@@ -43,23 +43,30 @@
         </div>
     </nav>
     <div class="font-serif flex justify-center mb-6 mt-6">
-        <div class="bg-grey-800 shadow-lg w-full max-w-3xl">
-           <h1 class="text-2xl text-center">About Me!</h1>
-           <p>
-                {{am}}
-           </p>
-           <img src={{bg}} alt="background image" width="768">
-           <img src={{pfp}} alt="profile photo">
+        <div class="bg-grey-800 shadow-lg w-full max-w-3xl m-4">
+           <h1 class="text-4xl text-center">Edit Your Profile</h1>
+           <form action = "/settings" method="POST" class="">
+               <label for="about" class="text-xl">About Me</label>
+               <textarea rows="10" name="about" class="w-full rounded-lg outline outline-1 outline-gray-400">
+                   {{am}}
+               </textarea>
+               <br>
+               <label for="background" class="text-xl">Background Image</label>
+               <textarea rows="3" name="background" class="w-full rounded-lg outline outline-1 outline-gray-400">
+                   {{bg}}
+               </textarea>
+               <br>
+               <label for="profile" class="text-xl">Profile Picture</label>
+               <textarea rows="3" name="profile" class="w-full rounded-lg outline outline-1 outline-gray-400">
+                   {{pfp}}
+               </textarea>
+               <br>
+               <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                   Submit
+               </button>
+           </form>
         </div>
     </div>
-    <div class="flex justify-center">
-        <a href="/settings">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                Edit Your Profile
-            </button>
-        </a>
-    </div>
-    <br>
     <p class="text-center text-gray-500 text-xs">
         &copy;2025 GarfieldsCatHair All rights reserved.
     </p>

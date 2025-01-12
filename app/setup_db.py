@@ -65,3 +65,12 @@ def getBg(username):
 
 def getAM(username):
     return cursor.execute(f"SELECT about_me FROM users WHERE username='{username}'").fetchone()[0]
+
+def changePfp(pfp, username):
+    cursor.execute("UPDATE users SET pfp=? WHERE username=?", (pfp, username))
+
+def changeBg(bg, username):
+    cursor.execute("UPDATE users SET bg_image=? WHERE username=?", (bg, username))
+    
+def changeAM(am, username):
+    cursor.execute("UPDATE users SET about_me=? WHERE username=?", (am, username))

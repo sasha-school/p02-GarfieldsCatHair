@@ -69,5 +69,9 @@ chloeW -- 1/12/2025 11:57
 - Added .gitignore and updated design doc
 - Summarized Spotify API key situation in keys readme
 
-moyoF -- 1/12/2025 00:00
+claireS -- 1/12/2025 13:55
+- Added settings.html for editing profile
+- Created settings, changePfp, changeBg, and changeAM methods
+
+moyoF -- 1/12/2025 14:29
 - Added CSS to search page
