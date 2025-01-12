@@ -46,7 +46,7 @@ moyoF -- 1/10/2025 10:57
 chloeW -- 1/10/2025 12:47
 - Moved homepage.html into index.html and database.db outside of app directory
 
-moyoF -- 1/10/2025 7:36
+moyoF -- 1/10/2025 19:36
 - Made a better nav bar by actually using <nav> and ul
 - Added CSS for signup and homepage
 
@@ -54,9 +54,13 @@ moyoF -- 1/11/2025 12:59
 - Made "/" route to index even if not logged in
 - Made Basic profile tab
 
-claireS -- 1/11/2025 1:13
+claireS -- 1/11/2025 13:13
 - fixed login and added minor adjustments to signup
 - accounted for errors when the username does not exist
 
-moyoF -- 1/11/2025 1:46
+moyoF -- 1/11/2025 13:46
 - User data is in profile tab but not oragniszed
+
+chloeW -- 1/12/2025 00:38
+- Implemented search feature and error handling
+- Made search.html and error.html to test
