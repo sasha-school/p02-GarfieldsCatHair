@@ -17,7 +17,9 @@ import json
 app = Flask(__name__) 
 secret = os.urandom(32)
 app.secret_key = secret
-# db.userTable()
+
+key_id = None
+key_secret = None
 
 @app.route("/")
 def home():
@@ -76,6 +78,52 @@ def logout():
     session.pop("username", None)
     session.pop("password", None)
     return redirect(url_for("home"))
+
+@app.route("/search", methods=['GET', 'POST'])
+def search():
+    #retrieve keys and access token
+    try:
+        with open("app/keys/spotify_id.txt", "r") as file:
+            key_id = file.read().strip()
+    except:
+        return error("Missing client ID for Spotify API")
+    
+    try:
+        with open("app/keys/spotify_secret.txt", "r") as file:
+            key_secret = file.read().strip()
+    except:
+        return error("Missing client secret for Spotify API")
+    access_token = spotify.get_auth_token_header(key_id, key_secret)
+    if not access_token:
+        return error("Cannot retrieve access token for Spotify API")    
+    #retrieve query and search type
+    query = request.args.get("query")
+    search_type = request.args.getlist("search_type")
+    print(query)
+    print(search_type)
+    #search for ids
+    search_ids = spotify.search(access_token, query, search_type)
+    print(search_ids)
+    #search for and render info
+    data = {}
+    if "artist" in search_type:
+        artist_id = search_ids.get("artist")
+        artist_data = spotify.artist_info(access_token, artist_id)
+        data['artist'] = artist_data
+    if "track" in search_type:
+        track_id = search_ids.get("track")
+        track_data = spotify.track_info(access_token, track_id)
+        data['track'] = track_data
+    if "album" in search_type:
+        album_id = search_ids.get("album")
+        album_data = spotify.album_info(access_token, album_id)
+        data['album'] = album_data  
+    return render_template("search.html", data=data)
+
+
+@app.route("/error")
+def error(message):
+    return render_template("error.html", error = message)
 
 if __name__ == "__main__":
     app.debug = True

@@ -10,7 +10,7 @@ import sqlite3
 from flask import session
 
 
-#Create SQLite Table, creates if not already made
+#connects to SQLite database, creates if not already made
 db = sqlite3.connect("database.db", check_same_thread=False)
 cursor = db.cursor()
 
