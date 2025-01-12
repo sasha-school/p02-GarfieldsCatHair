@@ -18,14 +18,19 @@ $ git clone git@github.com:sasha-school/p02-GarfieldsCatHair.git
 ```
 $ cd p02-GarfieldsCatHair
 ```
-3. Create and activate a virtual environment
+2. Create a virtual environment
 ```
 $ python3 -m venv foo
 ```
+3. Activate the virtual environment: Linux/MacOS
 ```
 $ . foo/bin/activate
 ```
-5. Install required packages
+3. Activate the virtual environment: Windows
+```
+$ foo\Scripts\activate
+```
+4. Install required packages
 ```
 $ pip install -r requirements.txt
 ```
@@ -36,9 +41,13 @@ $ pip install -r requirements.txt
 ```
 $ cd p02-GarfieldsCatHair
 ```
-2. Activate the virtual environment
+2. Activate the virtual environment: Linux/MacOS
 ```
 $ . foo/bin/activate
+```
+2. Activate the virtual environment: Windows
+```
+$ foo\Scripts\activate
 ```
 3. Run the Flask app
 ```
