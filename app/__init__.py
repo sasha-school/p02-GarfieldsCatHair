@@ -14,7 +14,7 @@ import spotify
 import urllib.request
 import json
 
-app = Flask(__name__) 
+app = Flask(__name__)
 secret = os.urandom(32)
 app.secret_key = secret
 
@@ -130,7 +130,7 @@ def search():
             key_id = file.read().strip()
     except:
         return error("Missing client ID for Spotify API")
-    
+
     try:
         with open("app/keys/spotify_secret.txt", "r") as file:
             key_secret = file.read().strip()
@@ -138,7 +138,7 @@ def search():
         return error("Missing client secret for Spotify API")
     access_token = spotify.get_auth_token_header(key_id, key_secret)
     if not access_token:
-        return error("Cannot retrieve access token for Spotify API")    
+        return error("Cannot retrieve access token for Spotify API")
     #retrieve query and search type
     query = request.args.get("query")
     search_type = request.args.getlist("search_type")
@@ -153,14 +153,17 @@ def search():
         artist_id = search_ids.get("artist")
         artist_data = spotify.artist_info(access_token, artist_id)
         data['artist'] = artist_data
+        data['artist_embed'] = spotify.get_embed_html(access_token, artist_id)
     if "track" in search_type:
         track_id = search_ids.get("track")
         track_data = spotify.track_info(access_token, track_id)
         data['track'] = track_data
+        data['track_embed'] = spotify.get_embed_html(access_token, track_id)
     if "album" in search_type:
         album_id = search_ids.get("album")
         album_data = spotify.album_info(access_token, album_id)
-        data['album'] = album_data  
+        data['album'] = album_data
+        data['album_embed'] = spotify.get_embed_html(access_token, album_id)
     return render_template("search.html", data=data)
 
 
