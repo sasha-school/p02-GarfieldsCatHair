@@ -105,6 +105,17 @@ def settings():
     db.changeAM(request.form.get("about"), session.get("username"))
     return redirect(url_for("profile"))
 
+@app.route("/createReview", methods=['GET', 'POST'])
+def create():
+    if request.method=="POST":
+        review = request.form.get("review")
+        db.addReview(session.get("username"), review)
+        return redirect(url_for("profile"))
+    return render_template("create.html")
+
+# @app.route("/blog/<blogid>")
+# def viewBlog(blogid):
+
 @app.route("/logout", methods=['POST', 'GET'])
 def logout():
     session.pop("username", None)

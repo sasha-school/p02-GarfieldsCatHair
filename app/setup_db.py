@@ -77,3 +77,10 @@ def changeAM(am, username):
     
 def index():
     return cursor.execute("SELECT username, pfp FROM users").fetchall()
+
+def addReview(username, text):
+    cursor.execute("INSERT INTO posts(username, post) VALUES(?, ?)", (username, text))
+    db.commit()
+
+def getReview(reviewid):
+    return cursor.execute("SELECT post FROM posts WHERE id=?", (blogid,)).fetchone()
