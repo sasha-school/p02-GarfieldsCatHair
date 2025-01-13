@@ -34,12 +34,12 @@ def search(token_header, query, search_type): #https://developer.spotify.com/doc
     type = type[:-1]
     query = f"https://api.spotify.com/v1/search?q={query}&type={type}&limit=1" #searches 1, limit can be modified
     result = get(query, headers=token_header)
-    output = {} 
+    output = {}
     for t in search_type:
         json_items = json.loads(result.content)[f"{t}s"]["items"]
         if (len(json_items)==0):
             print(f"no {search_type} found")
-        else: 
+        else:
             output[t]= json_items[0]["id"]
     return output #returns dictionary, keys are search_type, values are ids
 
@@ -98,3 +98,7 @@ def album_info(token_header, id):
         tracks += [track['name']]
     output['tracks'] = tracks
     return(output) #returns dictionary
+
+
+def get_embed_html(token_header, id):
+    return f'<iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/{id}?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>'
