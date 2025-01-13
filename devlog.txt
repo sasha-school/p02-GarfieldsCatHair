@@ -75,3 +75,7 @@ claireS -- 1/12/2025 13:55
 
 moyoF -- 1/12/2025 14:29
 - Added CSS to search page
+
+claireS -- 1/12/2025 20:59
+- Made functions to implement example profiles
+- Made model.html and edited index.html to show examples
