@@ -21,7 +21,7 @@ def userTable():
 
 #posts table
 def testTable0():
-    cursor.execute("CREATE TABLE IF NOT EXISTS posts(id INTEGER PRIMARY KEY, username TEXT, post TEXT)") 
+    cursor.execute("CREATE TABLE IF NOT EXISTS posts(id INTEGER PRIMARY KEY, username TEXT, post TEXT)")
     db.commit()
 
 userTable()
@@ -68,12 +68,15 @@ def getAM(username):
 
 def changePfp(pfp, username):
     cursor.execute("UPDATE users SET pfp=? WHERE username=?", (pfp, username))
+    db.commit()
 
 def changeBg(bg, username):
     cursor.execute("UPDATE users SET bg_image=? WHERE username=?", (bg, username))
-    
+    db.commit()
+
 def changeAM(am, username):
     cursor.execute("UPDATE users SET about_me=? WHERE username=?", (am, username))
-    
+    db.commit()
+
 def index():
     return cursor.execute("SELECT username, pfp FROM users").fetchall()
