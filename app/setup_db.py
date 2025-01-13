@@ -74,3 +74,6 @@ def changeBg(bg, username):
     
 def changeAM(am, username):
     cursor.execute("UPDATE users SET about_me=? WHERE username=?", (am, username))
+    
+def index():
+    return cursor.execute("SELECT username, pfp FROM users").fetchall()

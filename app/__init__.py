@@ -24,7 +24,16 @@ key_secret = None
 @app.route("/")
 def home():
     if session.get("username") != None:
-        return render_template("index.html", username = session.get("username"))
+        users = [user[0] for user in db.index()]
+        pfps = [user[1] for user in db.index()]
+        userIndex = users.index(session.get("username"))
+        users.pop(userIndex)
+        pfps.pop(userIndex)
+        examples = []
+        for i in range(3):
+            examples.append([users[i], pfps[i], "/view/" + users[i]])
+        print(examples)
+        return render_template("index.html", username = session.get("username"), examples=examples)
     return redirect(url_for("signup"))
 
 @app.route("/indexTest")
@@ -72,6 +81,14 @@ def profile():
         am = db.getAM(username)
         return render_template("profile.html", username=username, pfp=pfp, bg=bg, am=am)
     return redirect(url_for("login"))
+
+@app.route("/view/<user>")
+def viewModel(user):
+    username=user
+    pfp=db.getPfp(user)
+    bg=db.getBg(user)
+    am=db.getAM(user)
+    return render_template("model.html", username=username, pfp=pfp, bg=bg, am=am)
 
 @app.route("/settings", methods=['GET', 'POST'])
 def settings():
