@@ -149,7 +149,7 @@ def search():
         with open("app/keys/spotify_id.txt", "r") as file:
             key_id = file.read().strip()
     except:
-        return error("Missing client ID for Spotify API")
+        return render_template("error.html", error="missing api keys :(")
 
     try:
         with open("app/keys/spotify_secret.txt", "r") as file:

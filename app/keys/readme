@@ -1,1 +1,7 @@
-Spotify API: Both a client ID and a client secret are needed to generate an access token that can be used to make API calls
+##Spotify API
+Both a client ID and a client secret are needed to generate an access token that can be used to make API calls
+To get credentials:
+- Go to https://developer.spotify.com/dashboard and log in with your Spotify account (or make one)
+- Create an app, fill in with any app name/description/redirect url, select "Web API", and agree to terms
+- Open your app page, go to settings, find "Client ID" and "Client Secret", copy and paste into respective txt files
+On the app page, you are also able to see the quantity of API requests and users run.
