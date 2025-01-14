@@ -20,12 +20,16 @@ def userTable():
     db.commit()
 
 #posts table
-def testTable0():
-    cursor.execute("CREATE TABLE IF NOT EXISTS posts(id INTEGER PRIMARY KEY, username TEXT, post TEXT)")
+def postTable():
+    cursor.execute("CREATE TABLE IF NOT EXISTS posts(id INTEGER PRIMARY KEY, username TEXT, item TEXT, review TEXT)")
     db.commit()
-
+    
+def BYE():
+    cursor.execute("DROP TABLE posts")
+    db.commit()
+    
 userTable()
-testTable0()
+postTable()
 
 # User Helpers
 def addUser(username, password):
@@ -81,16 +85,19 @@ def changeAM(am, username):
 def index():
     return cursor.execute("SELECT username, pfp FROM users").fetchall()
 
-def addReview(username, text):
-    cursor.execute("INSERT INTO posts(username, post) VALUES(?, ?)", (username, text))
+def addReview(username, item, review):
+    cursor.execute("INSERT INTO posts(username, item, review) VALUES(?, ?, ?)", (username, item, review))
     db.commit()
     return cursor.execute("SELECT id FROM posts ORDER BY id DESC LIMIT 1").fetchone()
 
 def getReview(reviewid):
-    return cursor.execute("SELECT post FROM posts WHERE id=?", (reviewid,)).fetchone()
+    return cursor.execute("SELECT review FROM posts WHERE id=?", (reviewid,)).fetchone()
+
+def getItem(reviewid):
+    return cursor.execute("SELECT item FROM posts WHERE id=?", (reviewid,)).fetchone()
 
 def getAuthor(reviewid):
     return cursor.execute("SELECT username FROM posts WHERE id=?", (reviewid,)).fetchone()
 
 def profileRev(username):
-    return cursor.execute("SELECT post, id FROM posts WHERE username=?", (username,)).fetchall()
+    return cursor.execute("SELECT review, id FROM posts WHERE username=?", (username,)).fetchall()

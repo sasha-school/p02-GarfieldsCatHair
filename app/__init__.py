@@ -123,16 +123,18 @@ def create():
     if session.get("username") == None:
         return redirect(url_for("login"))
     if request.method=="POST":
+        item = request.form.get("item")
         review = request.form.get("review")
-        revid = db.addReview(session.get("username"), review)[0]
+        revid = db.addReview(session.get("username"), item, review)[0]
         return redirect("/review/" + str(revid))
     return render_template("create.html")
 
 @app.route("/review/<revid>")
 def viewReview(revid):
+    item = db.getItem(revid)[0]
     review = db.getReview(revid)[0]
     username = db.getAuthor(revid)[0]
-    return render_template("review.html", review=review, username=username)
+    return render_template("review.html", item=item, review=review, username=username)
 
 @app.route("/logout", methods=['POST', 'GET'])
 def logout():

@@ -49,6 +49,14 @@
         <div class="bg-grey-800 shadow-lg w-full max-w-3xl m-4">
            <h1 class="text-4xl text-center">Write Your Review</h1>
            <form action = "/createReview" method="POST" class="">
+               <label for="item">What are you reviewing?</label>
+               <select name="item" id="item">
+                   <option value="artist">Artist</option>
+                   <option value="track">Track</option>
+                   <option value="album">Album</option>
+               </select>
+               <br>
+               <p>Speak your truth!</p>
                <label for="review" class="text-xl"></label>
                <textarea rows="10" name="review" class="w-full rounded-lg outline outline-1 outline-gray-400"></textarea>
                <br>
