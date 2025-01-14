@@ -84,6 +84,13 @@ def index():
 def addReview(username, text):
     cursor.execute("INSERT INTO posts(username, post) VALUES(?, ?)", (username, text))
     db.commit()
+    return cursor.execute("SELECT id FROM posts ORDER BY id DESC LIMIT 1").fetchone()
 
 def getReview(reviewid):
-    return cursor.execute("SELECT post FROM posts WHERE id=?", (blogid,)).fetchone()
+    return cursor.execute("SELECT post FROM posts WHERE id=?", (reviewid,)).fetchone()
+
+def getAuthor(reviewid):
+    return cursor.execute("SELECT username FROM posts WHERE id=?", (reviewid,)).fetchone()
+
+def profileRev(username):
+    return cursor.execute("SELECT post, id FROM posts WHERE username=?", (username,)).fetchall()

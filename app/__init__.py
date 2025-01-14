@@ -79,7 +79,14 @@ def profile():
         pfp = db.getPfp(username)
         bg = db.getBg(username)
         am = db.getAM(username)
-        return render_template("profile.html", username=username, pfp=pfp, bg=bg, am=am)
+        revs = db.profileRev(username)
+        reviews = []
+        #print(revs)
+        for i in range(len(revs)):
+            sub = [revs[i][0], "/review/" + str(revs[i][1])]
+            reviews.append(sub)
+        #print(reviews)
+        return render_template("profile.html", username=username, pfp=pfp, bg=bg, am=am, reviews=reviews)
     return redirect(url_for("login"))
 
 @app.route("/view/<user>")
@@ -88,7 +95,13 @@ def viewModel(user):
     pfp=db.getPfp(user)
     bg=db.getBg(user)
     am=db.getAM(user)
-    return render_template("model.html", username=username, pfp=pfp, bg=bg, am=am)
+    revs = db.profileRev(user)
+    reviews = []
+    #print(revs)
+    for i in range(len(revs)):
+        sub = [revs[i][0], "/review/" + str(revs[i][1])]
+        reviews.append(sub)
+    return render_template("model.html", username=username, pfp=pfp, bg=bg, am=am, reviews=reviews)
 
 @app.route("/settings", methods=['GET', 'POST'])
 def settings():
@@ -107,14 +120,19 @@ def settings():
 
 @app.route("/createReview", methods=['GET', 'POST'])
 def create():
+    if session.get("username") == None:
+        return redirect(url_for("login"))
     if request.method=="POST":
         review = request.form.get("review")
-        db.addReview(session.get("username"), review)
-        return redirect(url_for("profile"))
+        revid = db.addReview(session.get("username"), review)[0]
+        return redirect("/review/" + str(revid))
     return render_template("create.html")
 
-# @app.route("/blog/<blogid>")
-# def viewBlog(blogid):
+@app.route("/review/<revid>")
+def viewReview(revid):
+    review = db.getReview(revid)[0]
+    username = db.getAuthor(revid)[0]
+    return render_template("review.html", review=review, username=username)
 
 @app.route("/logout", methods=['POST', 'GET'])
 def logout():
