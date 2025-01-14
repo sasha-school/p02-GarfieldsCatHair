@@ -46,17 +46,14 @@
         </div>
     </nav>
     <div class="font-serif flex justify-center mb-6 mt-6">
-        <div class="shadow-lg w-full max-w-3xl bg-[url('{{bg}}')] bg-[length:200px_100px] h-screen">
-          <div class="bg-white">
-             <h1 class="text-4xl text-left mt-6">{{username}}</h1>
+        <div class="shadow-lg w-full max-w-3xl bg-[url('{{bg.strip()}}')] bg-[length:200px_100px] h-screen">
+          <h1 class="bg-white text-4xl text-left mt-6">{{username}}</h1><br>
+          <div class="flex justify-normal">
+            <img src={{pfp}} alt="profile photo" class="size-40 rounded-lg ml-4 border-double border-4">
+            <div class="font-serif flex justify-center">
+              <p class="bg-white text-2xl text-left ml-6 pt-1">{{am}}</p>
+            </div>
           </div>
-          <div class="bg-white">
-             <p class="text-2xl text-left mt-6">
-                  {{am}}
-             </p>
-          </div>
-             <!-- <img src={{bg}} alt="background image" width="768"> -->
-             <img src={{pfp}} alt="profile photo" class="size-40 rounded-lg mb-6 mt-6">
         </div>
     </div>
     <div class="flex justify-center">
