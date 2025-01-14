@@ -30,7 +30,7 @@ def home():
         users.pop(userIndex)
         pfps.pop(userIndex)
         examples = []
-        for i in range(3):
+        for i in range(len(users)):
             examples.append([users[i], pfps[i], "/view/" + users[i]])
         print(examples)
         return render_template("index.html", username = session.get("username"), examples=examples)
