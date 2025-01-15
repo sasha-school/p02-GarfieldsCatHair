@@ -43,7 +43,7 @@ moyoF -- 1/10/2025 10:57
 - Created html for homepage with basic navbar
 - Made a flask route for homepage
 
-chloeW -- 1/10/2025 12:47
+chloeW -- 1/10/2025 11:47
 - Moved homepage.html into index.html and database.db outside of app directory
 
 moyoF -- 1/10/2025 19:36
@@ -79,3 +79,10 @@ moyoF -- 1/12/2025 14:29
 claireS -- 1/12/2025 20:59
 - Made functions to implement example profiles
 - Made model.html and edited index.html to show examples
+
+chloeW, claireS -- 1/14/2025 11:47
+- Continued working on review feature
+- Encountered index error with example profile display
+
+chloeW -- 1/14/2025 16:05
+- Resolved index error by displaying all users on homepage
