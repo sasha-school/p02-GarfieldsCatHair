@@ -54,7 +54,7 @@
         Welcome to TuneTown, a social media site for music lovers!
     </h1>
 	<h1 class="text-xl text-center p-8">Check out these users!<h1>
-	<div class="flex justify-between mx-60">
+	<div class="flex flex-wrap justify-between mx-60">
 		{% for example in examples %}
 			<div class="text-center text-blue-500 underline">
 				<a href={{example[2]}}>{{example[0]}}</a>
