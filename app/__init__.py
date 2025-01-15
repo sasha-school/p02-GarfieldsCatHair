@@ -85,7 +85,7 @@ def profile():
         for i in range(len(revs)):
             sub = [revs[i][0], "/review/" + str(revs[i][1])]
             reviews.append(sub)
-        #print(reviews)
+        print(reviews)
         return render_template("profile.html", username=username, pfp=pfp, bg=bg, am=am, reviews=reviews)
     return redirect(url_for("login"))
 
@@ -135,6 +135,18 @@ def viewReview(revid):
     review = db.getReview(revid)[0]
     username = db.getAuthor(revid)[0]
     return render_template("review.html", item=item, review=review, username=username)
+
+@app.route("/review")
+def viewAllReviews():
+    revs = db.getAllReviews()
+    reviews = []
+    #print(revs)
+    for i in range(len(revs)):
+        sub = [revs[i][0] , "/review/" + str(revs[i][1])]
+        reviews.append(sub)
+    print(reviews)
+    print(reviews)
+    return render_template("review.html", reviews=reviews)
 
 @app.route("/logout", methods=['POST', 'GET'])
 def logout():
