@@ -32,7 +32,7 @@ def home():
         examples = []
         for i in range(len(users)):
             examples.append([users[i], pfps[i], "/view/" + users[i]])
-        print(examples)
+        #print(examples)
         return render_template("index.html", username = session.get("username"), examples=examples)
     return redirect(url_for("login"))
 
@@ -144,8 +144,19 @@ def viewAllReviews():
     for i in range(len(revs)):
         sub = [revs[i][0] , "/review/" + str(revs[i][1])]
         reviews.append(sub)
-    print(reviews)
-    print(reviews)
+    #print(reviews)
+    return render_template("review.html", reviews=reviews)
+
+@app.route("/review/category/<category>")
+def viewCategoryReviews(category):
+    cap = category.capitalize()
+    revs = db.getCategoryReviews(cap)
+    reviews = []
+    print(revs)
+    for i in range(len(revs)):
+        sub = [revs[i][0] , "/review/" + str(revs[i][1])] #fix this
+        reviews.append(sub)
+    #print(reviews)
     return render_template("review.html", reviews=reviews)
 
 @app.route("/logout", methods=['POST', 'GET'])

@@ -96,6 +96,9 @@ def getReview(reviewid):
 def getAllReviews():
     return cursor.execute("SELECT review, id FROM posts").fetchall()
 
+def getCategoryReviews(category):
+    return cursor.execute("SELECT review, id FROM posts WHERE item=?", (category,)).fetchall()
+
 def getItem(reviewid):
     return cursor.execute("SELECT item FROM posts WHERE id=?", (reviewid,)).fetchone()
 
