@@ -34,7 +34,7 @@ def home():
             examples.append([users[i], pfps[i], "/view/" + users[i]])
         print(examples)
         return render_template("index.html", username = session.get("username"), examples=examples)
-    return redirect(url_for("signup"))
+    return redirect(url_for("login"))
 
 @app.route("/indexTest")
 def homepage():
