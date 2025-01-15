@@ -86,3 +86,7 @@ chloeW, claireS -- 1/14/2025 11:47
 
 chloeW -- 1/14/2025 16:05
 - Resolved index error by displaying all users on homepage
+
+chloeW, claireS -- 1/15/2025 11:47
+- Worked on functions to view all reviews/reviews from a specific category
+- Updated review.html accordingly
