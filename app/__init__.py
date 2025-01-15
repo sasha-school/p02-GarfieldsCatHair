@@ -131,6 +131,8 @@ def create():
 
 @app.route("/review/<revid>")
 def viewReview(revid):
+    if session.get("username") == None:
+        return redirect(url_for("login"))
     item = db.getItem(revid)[0]
     review = db.getReview(revid)[0]
     username = db.getAuthor(revid)[0]
@@ -138,6 +140,8 @@ def viewReview(revid):
 
 @app.route("/review")
 def viewAllReviews():
+    if session.get("username") == None:
+        return redirect(url_for("login"))
     revs = db.getAllReviews()
     reviews = []
     #print(revs)
@@ -149,6 +153,8 @@ def viewAllReviews():
 
 @app.route("/review/category/<category>")
 def viewCategoryReviews(category):
+    if session.get("username") == None:
+        return redirect(url_for("login"))
     cap = category.capitalize()
     revs = db.getCategoryReviews(cap)
     reviews = []
@@ -167,6 +173,8 @@ def logout():
 
 @app.route("/search", methods=['GET', 'POST'])
 def search():
+    if session.get("username") == None:
+        return redirect(url_for("login"))
     #retrieve keys and access token
     try:
         with open("app/keys/spotify_id.txt", "r") as file:

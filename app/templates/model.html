@@ -29,14 +29,13 @@
               <li>
                 <a href="/signup" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-800 md:p-0 dark:text-white md:dark:hover:text-purple-800 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Signup</a>
               </li>
-              <li>
-                <a href="/search" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-800 md:p-0 dark:text-white md:dark:hover:text-purple-800 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Search</a>
+                <a href="/review" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-800 md:p-0 dark:text-white md:dark:hover:text-purple-800 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Read Reviews</a>
+              </li>
+	      <li>
+                <a href="/createReview" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-800 md:p-0 dark:text-white md:dark:hover:text-purple-800 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Write Review</a>
               </li>
               <li>
                 <a href="/profile" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-800 md:p-0 dark:text-white md:dark:hover:text-purple-800 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">View Profile</a>
-              </li>
-			  <li>
-                <a href="/createReview" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-800 md:p-0 dark:text-white md:dark:hover:text-purple-800 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Create Review</a>
               </li>
               <li>
                 <a href="/logout" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-800 md:p-0 dark:text-white md:dark:hover:text-purple-800 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Logout</a>
@@ -57,7 +56,7 @@
             </div>
           </div>
           <div class="pt-36">
-            <h1 class="font-serif bg-slate-400 text-center text-2xl mt-4 ml-72 mr-72 mb-4">Your Reviews</h1>
+            <h1 class="font-serif bg-slate-400 text-center text-2xl mt-4 ml-72 mr-72 mb-4">{{username}}'s Reviews</h1>
             <div class="flex flex-col items-center m-2">
               {% for review in reviews %}
               <div class="bg-white outline outline-1 w-1/2 rounded-xl p-8">
@@ -70,12 +69,12 @@
               {% endfor %}
             </div>
           </div>
+          <br>
+          <p class="text-center text-gray-500 text-xs">
+              &copy;2025 GarfieldsCatHair All rights reserved.
+          </p>
         </div>
     </div>
-    <br>
-    <p class="text-center text-gray-500 text-xs">
-        &copy;2025 GarfieldsCatHair All rights reserved.
-    </p>
 </body>
 
 </html>
