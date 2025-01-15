@@ -23,11 +23,11 @@ def userTable():
 def postTable():
     cursor.execute("CREATE TABLE IF NOT EXISTS posts(id INTEGER PRIMARY KEY, username TEXT, item TEXT, review TEXT)")
     db.commit()
-    
+
 def BYE():
     cursor.execute("DROP TABLE posts")
     db.commit()
-    
+
 userTable()
 postTable()
 
