@@ -93,6 +93,9 @@ def addReview(username, item, review):
 def getReview(reviewid):
     return cursor.execute("SELECT review FROM posts WHERE id=?", (reviewid,)).fetchone()
 
+def getAllReviews():
+    return cursor.execute("SELECT review, id FROM posts").fetchall()
+
 def getItem(reviewid):
     return cursor.execute("SELECT item FROM posts WHERE id=?", (reviewid,)).fetchone()
 
