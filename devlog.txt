@@ -90,3 +90,8 @@ chloeW -- 1/14/2025 16:05
 chloeW, claireS -- 1/15/2025 11:47
 - Worked on functions to view all reviews/reviews from a specific category
 - Updated review.html accordingly
+
+chloeW -- 1/15/2025 16:57
+- Finished review feature
+- Updated html files to account for additions
+- Fixed layout issues in review.html, profile.html, and index.html
