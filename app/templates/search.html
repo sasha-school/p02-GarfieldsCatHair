@@ -81,6 +81,7 @@
                                 <p>Genres: {{ data['artist']['genres'] | join(', ') }}</p>
                                 <p>Albums: {{ data['artist']['albums'] | join(', ') }}</p>
                                 <p>Top Tracks: {{ data['artist']['top_tracks'] | join(', ') }}</p>
+                                <div>{{ data['artist_embed'] | safe }}</div>
                             </div><br>
 
                         {% endif %}
@@ -93,6 +94,7 @@
                                 <p>Album: {{ data['track']['album_name'] }}</p>
                                 <p>Release Date: {{ data['track']['release_date'] }}</p>
                                 <p>Duration: {{ data['track']['duration'] }}</p>
+                                <div>{{ data['track_embed'] | safe }}</div>
                             </div><br>
                         {% endif %}
 
@@ -103,6 +105,7 @@
                                 <p>Artist: {{ data['album']['artist_name'] }}</p>
                                 <p>Release Date: {{ data['album']['release_date'] }}</p>
                                 <p>Tracks: {{ data['album']['tracks'] | join(', ') }}</p>
+                                <div>{{ data['album_embed'] | safe }}</div>
                             </div>
                         {% endif %}
                     </div>

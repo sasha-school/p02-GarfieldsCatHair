@@ -50,16 +50,16 @@
     <div class="font-serif flex justify-center mb-6 mt-6">
         <div class="shadow-lg w-full max-w-3xl bg-[url('{{bg.strip()}}')] bg-[length:200px_100px] h-screen">
           <div>
-            <h1 class="bg-slate-500 text-4xl text-left mt-6 opacity-75" >{{username}}</h1><br>
+            <h1 class="bg-white bg-opacity-70 text-4xl text-left mt-6">{{username}}</h1><br>
             <div class="flex justify-normal">
-              <img src={{pfp}} alt="profile photo" class="size-40 rounded-lg ml-4 border-solid border-[5px] border-slate-300">
+              <img src={{pfp}} alt="profile photo" class="size-40 rounded-lg ml-4 border-solid border-[5px] border-white border-opacity-70">
               <div class="font-serif flex justify-center">
-                <p class="bg-slate-400 text-2xl text-left ml-6 mt-6 mb-20 mr-6">{{am}}</p>
+                <p class="bg-white bg-opacity-70 text-2xl text-left ml-6 mt-6 mb-20 mr-6">{{am}}</p>
               </div>
             </div>
           </div>
           <div class="">
-            <h1 class="font-serif bg-slate-400 text-center text-2xl mt-4 ml-72 mr-72 mb-4">Your Reviews</h1>
+            <h1 class="font-serif bg-white bg-opacity-75 text-center text-2xl mt-4 ml-72 mr-72 mb-4">Your Reviews</h1>
             <div class="flex flex-col items-center m-2">
               {% for review in reviews %}
               <div class="bg-white outline outline-1 w-1/2 rounded-xl p-8 mb-6">
@@ -67,21 +67,21 @@
                   {{review[0]}}
                 </p>
                 <br>
-                <a href={{review[1]}} class="text-blue-500">Read More</a>
+                <a href={{review[1]}} class="text-blue-500">See More</a>
               </div>
               {% endfor %}
             </div>
-          </div>
-  <div class="font-serif flex justify-center pt-32">
-      <a href="/settings">
+            <div class="font-serif flex justify-center mt-6">
+            <a href="/settings">
           <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
               Edit Your Profile
           </button>
       </a>
       </div>
-        <p class="text-center text-gray-500 text-xs pt-36 pb-4">
+        <p class="text-center text-gray-500 text-xs pt-10 pb-4">
             &copy;2025 GarfieldsCatHair All rights reserved.
         </p>
+          </div>
         </div>
     </div>
 </body>

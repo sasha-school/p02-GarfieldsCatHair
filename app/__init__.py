@@ -205,17 +205,17 @@ def search():
         artist_id = search_ids.get("artist")
         artist_data = spotify.artist_info(access_token, artist_id)
         data['artist'] = artist_data
-        data['artist_embed'] = spotify.get_embed_html(access_token, artist_id)
+        data['artist_embed'] = spotify.get_embed_html(access_token, "artist", artist_id)
     if "track" in search_type:
         track_id = search_ids.get("track")
         track_data = spotify.track_info(access_token, track_id)
         data['track'] = track_data
-        data['track_embed'] = spotify.get_embed_html(access_token, track_id)
+        data['track_embed'] = spotify.get_embed_html(access_token, "track", track_id)
     if "album" in search_type:
         album_id = search_ids.get("album")
         album_data = spotify.album_info(access_token, album_id)
         data['album'] = album_data
-        data['album_embed'] = spotify.get_embed_html(access_token, album_id)
+        data['album_embed'] = spotify.get_embed_html(access_token, "album", album_id)
     return render_template("search.html", data=data)
 
 

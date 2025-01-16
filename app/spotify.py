@@ -100,5 +100,5 @@ def album_info(token_header, id):
     return(output) #returns dictionary
 
 #from spotifys website
-def get_embed_html(token_header, id):
-    return f'<iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/{id}?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>'
+def get_embed_html(token_header, category, id):
+    return f'<iframe style="border-radius:12px" src="https://open.spotify.com/embed/{category}/{id}?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>'
