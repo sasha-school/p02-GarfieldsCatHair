@@ -58,11 +58,11 @@
               </div>
             </div>
           </div>
-          <div class="pt-36">
+          <div class="">
             <h1 class="font-serif bg-slate-400 text-center text-2xl mt-4 ml-72 mr-72 mb-4">Your Reviews</h1>
             <div class="flex flex-col items-center m-2">
               {% for review in reviews %}
-              <div class="bg-white outline outline-1 w-1/2 rounded-xl p-8">
+              <div class="bg-white outline outline-1 w-1/2 rounded-xl p-8 mb-6">
                 <p class="w-full line-clamp-2">
                   {{review[0]}}
                 </p>
@@ -72,16 +72,14 @@
               {% endfor %}
             </div>
           </div>
-  <br>
-  <div class="font-serif flex justify-center">
+  <div class="font-serif flex justify-center pt-32">
       <a href="/settings">
           <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
               Edit Your Profile
           </button>
       </a>
       </div>
-        <br>
-        <p class="text-center text-gray-500 text-xs">
+        <p class="text-center text-gray-500 text-xs pt-36 pb-4">
             &copy;2025 GarfieldsCatHair All rights reserved.
         </p>
         </div>
