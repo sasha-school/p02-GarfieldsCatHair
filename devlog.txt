@@ -111,3 +111,9 @@ chloeW -- 1/15/2025 16:57
 - Updated html files to account for additions
 - Fixed layout issues in review.html, profile.html, and index.html
 
+moyoF -- 1/16/2025 9:00
+- Updated devlog
+
+moyoF -- 1/16/2025 9:26
+- Changed read and write review layout
+- Changed read and write navabar

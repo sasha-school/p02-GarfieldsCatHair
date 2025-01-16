@@ -127,7 +127,8 @@ def create():
         review = request.form.get("review")
         revid = db.addReview(session.get("username"), item, review)[0]
         return redirect("/review/" + str(revid))
-    return render_template("create.html")
+    username = session.get("username")
+    return render_template("create.html", username=username)
 
 @app.route("/review/<revid>")
 def viewReview(revid):

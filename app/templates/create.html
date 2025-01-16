@@ -35,7 +35,7 @@
                 <a href="/review" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-800 md:p-0 dark:text-white md:dark:hover:text-purple-800 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Read Reviews</a>
               </li>
 	      <li>
-                <a href="/createReview" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-800 md:p-0 dark:text-white md:dark:hover:text-purple-800 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Write Review</a>
+                <a href="/createReview" class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-purple-800">Write Review</a>
               </li>
               <li>
                 <a href="/profile" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-800 md:p-0 dark:text-white md:dark:hover:text-purple-800 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">View Profile</a>
@@ -48,21 +48,21 @@
         </div>
     </nav>
     <div class="font-serif flex justify-center mb-6 mt-6">
-        <div class="bg-grey-800 shadow-lg w-full max-w-3xl m-4">
-           <h1 class="text-4xl text-center">Write Your Review</h1>
+        <div class="bg-grey-800 shadow-xl shadow-inner w-full max-w-3xl m-4 rounded-xl">
+           <h1 class="text-4xl text-center mb-2">Write Your Review</h1>
            <form action = "/createReview" method="POST" class="">
-               <label for="item">What are you reviewing?</label>
+               <label for="item" class="ml-2">What are you reviewing?</label>
                <select name="item" id="item">
                    <option value="Artist">Artist</option>
                    <option value="Track">Track</option>
                    <option value="Album">Album</option>
                </select>
                <br>
-               <p>Speak your truth!</p>
+               <p class="ml-2 mt-2 mb-4">Speak your truth!</p>
                <label for="review" class="text-xl"></label>
-               <textarea rows="10" name="review" class="w-full rounded-lg outline outline-1 outline-gray-400"></textarea>
+               <textarea rows="6" name="review" class="rounded-lg outline outline-1 outline-gray-400 w-11/12 ml-[28px]"></textarea>
                <br>
-               <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+               <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 ml-4 mb-6">
                    Submit
                </button>
            </form>
