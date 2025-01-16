@@ -49,14 +49,21 @@
         </div>
       </nav>
       <br><br>
-    <h1 class="text-2xl font-serif indent-3">
-        Hello, {{username}}!
-        Welcome to TuneTown, a social media site for music lovers!
-    </h1>
-	<h1 class="text-xl text-center p-8">Check out these users!<h1>
-	<div class="flex flex-wrap justify-between mx-60">
+    <div class="flex justify-center pb-24 pt-8">
+      <div class="bg-white p-6 rounded-lg shadow-md w-full max-w-4xl">
+        <h1 class="text-2xl font-serif indent-3">
+            Hello, {{username}}!
+            Welcome to TuneTown, a social media site for music lovers!
+        </h1>
+        <h2 class="text-xl font-serif indent-3">
+          No take is to harsh for us!
+        </h2>
+      </div>
+    </div>
+	<h1 class="text-2xl text-center p-8 font-serif">Check out these users!<h1>
+	<div class="font-serif flex flex-wrap justify-between mx-60">
 		{% for example in examples %}
-			<div class="text-center text-blue-500 underline">
+			<div class="text-center text-xl text-blue-500 underline">
 				<a href={{example[2]}}>{{example[0]}}</a>
 				<div style="width: 150px; height: 150px; overflow: hidden;">
 					<img src={{example[1]}} alt="pfp" class="h-40">
