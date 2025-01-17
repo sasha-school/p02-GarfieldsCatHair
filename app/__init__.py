@@ -223,6 +223,20 @@ def search():
 def error(message):
     return render_template("error.html", error = message)
 
+@app.errorhandler(404)
+def missingPage(e):
+    return render_template('error.html', error = e), 404
+
+@app.errorhandler(500)
+def internalService(e):
+    print(e)
+    return render_template('error.html', error = e), 500
+
+@app.errorhandler(Exception)
+def exception(e):
+    error = str(e).capitalize()
+    return render_template('error.html', error = error), 500
+
 if __name__ == "__main__":
     app.debug = True
     app.run()
