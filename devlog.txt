@@ -117,3 +117,10 @@ moyoF -- 1/16/2025 9:00
 moyoF -- 1/16/2025 9:26
 - Changed read and write review layout
 - Changed read and write navabar
+
+chloeW, claireS -- 1/16/2025 11:47
+- Made small changes to html files
+
+chloeW -- 1/16/2025 17:40
+- Wrapped up embeds in search
+- Made minor edits to page layouts

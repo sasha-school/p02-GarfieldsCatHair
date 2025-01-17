@@ -7,7 +7,7 @@
 - Moyo Fagbuyi : HTML and CSS/Tailwind
 
 ## Overview/Description
-TuneTown is a social media web app for music lovers, structured similarly to Myspace and its parody SpaceHey. Users will be able to create profiles, review songs, and, if time permits, directly communicate with one another. The Spotify API will allow users to search up musical artists and learn about their discography.
+TuneTown is a social media web app for music lovers, structured similarly to Myspace and its parody SpaceHey. Users will be able to create profiles and review songs. The Spotify API will allow users to search up musical artists and learn about their discography.
 
 # Install Guide
 
